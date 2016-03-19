@@ -1,0 +1,25 @@
+import java.util.Date;
+
+public class Website {
+
+	int count;
+	String websiteUrl;
+	Date lastClickedTime;
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getWebsiteUrl() {
+		return websiteUrl;
+	}
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
+	}
+
+}

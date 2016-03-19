@@ -1,0 +1,34 @@
+package com.adchallenge.test;
+
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.adchallenge.blogic.WebsiteAnalyzer;
+
+public class WebsiteAnalyzerTest {
+	WebsiteAnalyzer websiteAnalyzer = null;
+	
+
+	@Before
+	private void setUp() {
+		websiteAnalyzer = new WebsiteAnalyzer();
+	}
+	
+	@Test
+	public void validate(){
+		websiteAnalyzer.reportPageAccess("www.google.com");
+		websiteAnalyzer.reportPageAccess("www.google.com");
+		websiteAnalyzer.reportPageAccess("www.googlewe.com");
+		websiteAnalyzer.reportPageAccess("www.googleae.com");
+		websiteAnalyzer.reportPageAccess("www.google.com");
+		websiteAnalyzer.reportPageAccess("www.googlea.com");
+		websiteAnalyzer.reportPageAccess("www.googleae.com");
+		websiteAnalyzer.reportPageAccess("www.googleae.com");
+		List<String> topNPages = websiteAnalyzer.getTopNPages(3);
+		assertTrue(topNPages.size()==3);
+	}
+}

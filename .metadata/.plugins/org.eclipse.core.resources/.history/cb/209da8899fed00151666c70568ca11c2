@@ -1,0 +1,12 @@
+public class WebsiteAnalyzer {
+	// you may declare and use other variables or
+	// other helper methods you may need
+	public void reportPageAccess(String pageUrl) {
+		// your pre here
+	}
+
+	// the size of the list returned must be n
+	public List getTopNPages(int n) {
+		// your pre here
+	}
+}

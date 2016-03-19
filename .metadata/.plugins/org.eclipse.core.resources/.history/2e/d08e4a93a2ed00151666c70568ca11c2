@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class WebsiteAnalyzer {
+
+	Map<Integer, Set<Website>> allWebsiteCountMap = new HashMap<Integer, Set<Website>>();
+
+	Map<String, Website> urlWEbbsiteMapping = new HashMap<String, Website>();
+
+	// you may declare and use other variables or
+	// other helper methods you may need
+	public void reportPageAccess(String pageUrl) {
+		// your pre here
+
+		if (urlWEbbsiteMapping.containsKey(pageUrl)) {
+			// Get the website object if exist
+			Website website = urlWEbbsiteMapping.get(pageUrl);
+			// remove it from Map
+			Set allWebsite = allWebsiteCountMap.get(website.getCount());
+			allWebsite.remove(website);
+			
+			// get counter and add it with new counter to new index.
+
+		}
+	}
+
+	// the size of the list returned must be n
+	public List getTopNPages(int n) {
+		return null;
+		// your pre here
+	}
+}

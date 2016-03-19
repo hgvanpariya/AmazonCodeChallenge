@@ -1,0 +1,9 @@
+package com.adchallenge.blogic.test;
+
+public class MaximumSumTest {
+
+	@test
+	public void trial(){
+		
+	}
+}

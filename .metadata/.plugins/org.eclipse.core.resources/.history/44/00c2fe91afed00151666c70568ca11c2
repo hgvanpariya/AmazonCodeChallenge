@@ -1,0 +1,21 @@
+package com.adchallenge.test;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import com.adchallenge.blogic.WebsiteAnalyzer;
+
+public class WebsiteAnalyzerTest {
+	WebsiteAnalyzer websiteAnalyzer = null;
+	
+
+	@Before
+	private void setUp() {
+		websiteAnalyzer = new WebsiteAnalyzer();
+	}
+	
+	@Test
+	public void validate(){
+		
+	}
+}

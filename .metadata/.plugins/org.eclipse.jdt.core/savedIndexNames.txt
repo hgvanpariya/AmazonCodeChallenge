@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+C:\STT\Time_Base_WS_SHR_AMZ\.metadata\.plugins\org.eclipse.jdt.core
+1297027118.index

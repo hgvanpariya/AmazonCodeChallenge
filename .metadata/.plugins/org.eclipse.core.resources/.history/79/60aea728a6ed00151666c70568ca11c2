@@ -1,0 +1,105 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
+
+public class WebsiteAnalyzer {
+
+	public static void main(String args[]) {
+		WebsiteAnalyzer websiteAnalyzer = new WebsiteAnalyzer();
+		websiteAnalyzer.reportPageAccess("www.google.com");
+		websiteAnalyzer.reportPageAccess("www.googlewe.com");
+		websiteAnalyzer.reportPageAccess("www.googleae.com");
+		websiteAnalyzer.reportPageAccess("www.google.com");
+		websiteAnalyzer.reportPageAccess("www.googlea.com");
+		websiteAnalyzer.reportPageAccess("www.googleae.com");
+		websiteAnalyzer.getTopNPages(100);
+	}
+
+	Map<Integer, Set<Website>> allWebsiteCountMap = new HashMap<Integer, Set<Website>>();
+
+	Map<String, Website> urlWEbbsiteMapping = new HashMap<String, Website>();
+
+	// you may declare and use other variables or
+	// other helper methods you may need
+	public void reportPageAccess(String pageUrl) {
+		// your pre here
+
+		if (urlWEbbsiteMapping.containsKey(pageUrl)) {
+			// Get the website object if exist
+			Website website = urlWEbbsiteMapping.get(pageUrl);
+			// remove it from Map
+			Set<Website> allWebsite = allWebsiteCountMap
+					.get(website.getCount());
+			allWebsite.remove(website);
+
+			website.setCount(website.getCount() + 1);
+			// get counter and add it with new counter to new index.
+			if (allWebsiteCountMap.containsKey(website.getCount())) {
+				Set<Website> setForSpecificCount = allWebsiteCountMap
+						.get(website.getCount());
+				setForSpecificCount.add(website);
+			} else {
+				HashSet<Website> hashSet = new HashSet<Website>();
+				hashSet.add(website);
+				allWebsiteCountMap.put(website.getCount(), hashSet);
+			}
+
+		} else {
+			Website website = new Website();
+			website.setCount(0);
+			website.setWebsiteUrl(pageUrl);
+
+			if (allWebsiteCountMap.containsKey(website.getCount())) {
+				Set<Website> set = allWebsiteCountMap.get(website.getCount());
+				set.add(website);
+			} else {
+				// Put new Website on Map with counter
+				HashSet<Website> hashSet = new HashSet<Website>();
+				hashSet.add(website);
+				allWebsiteCountMap.put(website.getCount(), hashSet);
+			}
+			// Put new website MappingMap, to find object fast, next time.
+			urlWEbbsiteMapping.put(pageUrl, website);
+		}
+	}
+
+	// the size of the list returned must be n
+	public List getTopNPages(int n) {
+		Set<Integer> keySet = allWebsiteCountMap.keySet();
+		for (Integer integer : keySet) {
+			System.out.println(">>>> "+integer);
+			Set<Website> set = allWebsiteCountMap.get(integer);
+			TreeSet sortedKey = new TreeSet(new CompareTheKeys());
+			sortedKey.addAll(set);
+			for (Iterator iterator = sortedKey.iterator(); iterator.hasNext();) {
+				Website website = (Website) iterator.next();
+				System.out.println(website.getWebsiteUrl());
+			}
+		}
+		return null;
+		// your pre here
+	}
+}
+
+class CompareTheKeys implements Comparator {
+
+	public int compare(Object arg0, Object arg1) {
+		if (arg0 instanceof Integer && arg1 instanceof Integer) {
+			int firstInt = (Integer) arg0;
+			int secondInt = (Integer) arg1;
+			return firstInt - secondInt;
+		}
+		return 0;
+	}
+}

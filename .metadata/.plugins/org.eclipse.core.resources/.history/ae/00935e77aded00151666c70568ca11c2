@@ -1,0 +1,41 @@
+package com.adchallenge.blogic;
+
+/**
+ * This class will find the maximim of the sum
+ * 
+ * @author hvanparx
+ * 
+ */
+public class MaximumSum {
+
+	static int FindMaxSum(int[] arr) {
+		int maxSumIncElement = arr[0];
+		int maxSumExeElement = 0;
+		int excl_new;
+		int i;
+
+		for (i = 1; i < arr.length; i++) {
+			/* current max excluding i */
+			if ((maxSumIncElement > maxSumExeElement)) {
+				excl_new = maxSumIncElement;
+			} else {
+				excl_new = maxSumExeElement;
+			}
+
+			/* current max including i */
+			maxSumIncElement = maxSumExeElement + arr[i];
+			maxSumExeElement = excl_new;
+		}
+
+		if ((maxSumIncElement > maxSumExeElement)) {
+			return maxSumIncElement;
+		} else {
+			return maxSumExeElement;
+		}
+	}
+
+	public static void main(String args[]) {
+		int arr[] = { 4, 15, 2, 2, 3 };
+		System.out.println(FindMaxSum(arr));
+	}
+}

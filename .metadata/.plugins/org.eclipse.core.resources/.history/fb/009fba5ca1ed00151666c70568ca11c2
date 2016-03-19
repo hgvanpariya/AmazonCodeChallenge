@@ -1,0 +1,6 @@
+
+public class Website {
+
+	int count;
+	
+}

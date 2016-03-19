@@ -1,0 +1,67 @@
+package com.adchallenge.blogic;
+
+/**
+ * This class will find the maximim of the sum
+ * 
+ * @author hvanparx
+ * 
+ */
+public class MaximumSum {
+
+	/**
+	 * This method will take input array as an input and it will print the
+	 * output with the maximum of the sum
+	 * 
+	 * @param input
+	 *            array wich contains the input
+	 * @return it will return the sum of the elements,
+	 */
+	static int MaximumSumExclAdjucent(int[] input) {
+		/**
+		 * if the length of the array will be zero then the method will return
+		 * the -1 value.
+		 */
+		if (input.length <= 0) {
+			return -1;
+		}
+		/**
+		 * If the length of the input is one then the same element will provide
+		 * the maximum sum.
+		 */
+		if (input.length == 1) {
+			return input[0];
+		}
+
+		int maxSumIncElement = input[0];
+		int maxSumExeElement = 0;
+
+		/**
+		 * Array starts form one , as for one element we return the value as the
+		 * same number.
+		 */
+		for (int i = 1; i < input.length; i++) {
+			int maximumSumExclTmp;
+			if ((maxSumIncElement > maxSumExeElement)) {
+				maximumSumExclTmp = maxSumIncElement;
+			} else {
+				maximumSumExclTmp = maxSumExeElement;
+			}
+
+			maxSumIncElement = maxSumExeElement + input[i];
+			maxSumExeElement = maximumSumExclTmp;
+			System.out.println(i + "Inc" + maxSumIncElement);
+			System.out.println("Exec " + maxSumExeElement);
+		}
+
+		if (maxSumIncElement > maxSumExeElement) {
+			return maxSumIncElement;
+		} else {
+			return maxSumExeElement;
+		}
+	}
+
+	public static void main(String args[]) {
+		int input[] = { 1, 2, 3 };
+		System.out.println(MaximumSumExclAdjucent(input));
+	}
+}

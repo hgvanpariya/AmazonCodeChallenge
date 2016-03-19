@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class WebsiteAnalyzer {
+
+	public static void main(String args[]) {
+		WebsiteAnalyzer websiteAnalyzer = new WebsiteAnalyzer();
+		websiteAnalyzer.reportPageAccess("www.google.com");
+	}
+
+	Map<Integer, Set<Website>> allWebsiteCountMap = new HashMap<Integer, Set<Website>>();
+
+	Map<String, Website> urlWEbbsiteMapping = new HashMap<String, Website>();
+
+	// you may declare and use other variables or
+	// other helper methods you may need
+	public void reportPageAccess(String pageUrl) {
+		// your pre here
+
+		if (urlWEbbsiteMapping.containsKey(pageUrl)) {
+			// Get the website object if exist
+			Website website = urlWEbbsiteMapping.get(pageUrl);
+			// remove it from Map
+			Set<Website> allWebsite = allWebsiteCountMap
+					.get(website.getCount());
+			allWebsite.remove(website);
+
+			website.setCount(website.getCount() + 1);
+			// get counter and add it with new counter to new index.
+			if (allWebsiteCountMap.containsKey(website.getCount())) {
+				Set<Website> setForSpecificCount = allWebsiteCountMap
+						.get(website.getCount());
+				setForSpecificCount.add(website);
+			} else {
+				HashSet<Website> hashSet = new HashSet<Website>();
+				hashSet.add(website);
+				allWebsiteCountMap.put(website.getCount(), hashSet);
+			}
+
+		}
+	}
+
+	// the size of the list returned must be n
+	public List getTopNPages(int n) {
+		Set<Integer> keySet = allWebsiteCountMap.keySet();
+		for (Integer integer : keySet) {
+			Set<Website> set = allWebsiteCountMap.get(integer);
+			for (Iterator iterator = set.iterator(); iterator.hasNext();) {
+				Website website = (Website) iterator.next();
+				
+			}
+		}
+		return null;
+		// your pre here
+	}
+}

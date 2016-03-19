@@ -1,0 +1,10 @@
+package com.adchallenge.test;
+
+public class WebsiteAnalyzerTest {
+
+	
+	@Test
+	public void checkthis(){
+		
+	}
+}
